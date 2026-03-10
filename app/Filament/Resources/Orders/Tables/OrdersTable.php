@@ -14,26 +14,19 @@ class OrdersTable
     {
         return $table
             ->columns([
-                TextColumn::make('customer_id')
+                TextColumn::make('id')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('item_id')
-                    ->numeric()
+                TextColumn::make('customer.name')
                     ->sortable(),
-                TextColumn::make('quantity')
+                TextColumn::make('items.item.name')
+                    ->listWithLineBreaks()
+                    ->sortable(),
+                TextColumn::make('items_count')
+                    ->label('Items')
+                    ->counts('items'),
+                TextColumn::make('amount')
                     ->searchable(),
-                TextColumn::make('price')
-                    ->searchable(),
-                TextColumn::make('total')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
